@@ -102,8 +102,10 @@
   <button class="tab-button" data-category="sicak-icecek">Sıcak İçecek</button>
   <button class="tab-button" data-category="nargile">Nargile</button>
   <button class="tab-button" data-category="fix_menu">Fix Menu </button>
+   <button class="tab-button" data-category="tatlilar">Tatlılar </button>
   <button class="tab-button" data-category="yemekler">Yemekler</button>
   <button class="tab-button" data-category="cerezler">Aparatlar</button>
+  <button class="tab-button" data-category="bisküvi">Bisküvi</button>
 </header>
 
 <main>
@@ -113,9 +115,9 @@
 <script>
   const menu = {
     "soğuk-icecek": [
-      { name: "Monster", price: 100 },
+      { name: "Enerji İçeceği", price: 100 },
       { name: "Limonata", price: 80 },
-      { name: "Çamlıca Gazoz", price: 70 },
+      { name: "Çamlıca Gazoz", price: 60 },
       { name: "Furitti Gazoz", price: 80 },
       { name: "Mantana", price: 80 },
       { name: "Armutlu Gazoz", price: 80 },
@@ -129,10 +131,12 @@
       
     ],
     "sicak-icecek": [
-      { name: "Küçük Çay", price: 15 },
+      { name: "Küçük Çay", price: 20 },
       { name: "Büyük Çay", price: 30 },
       { name: "Duble Çay", price: 35 },
-      { name: "Türk Kahvesi", price: 100 },
+      { name: "Nane Limon", price: 50 },
+      { name: "Bitki Çayı", price: 120 },
+      { name: "Türk Kahvesi", price: 120 },
       { name: "Dibek", price: 100 },
       { name: "Menengiç", price: 100 },
       { name: "Americano", price: 90 },
@@ -142,7 +146,6 @@
       { name: "Salep", price: 90 },
       { name: "Sıcak Çikolata", price: 100 },
       { name: "Nescafe", price: 60 },
-      { name: "Doğal Çay", price: 100},
       { name: "Mocha", price: 120 }
     ],
     "nargile": [
@@ -150,8 +153,23 @@
       { name: "Lüle", price: 150 }
     ],
     "fix_menu": [
-      { name: "Magnolia", price: 175 },
+      { name: "fix-1: \nÇerez lüx, 4 Bardak çay, Nargile, 2 Tane magnolya, 1 Meyve tabağı", 
+      price: 1200 },
+      { name: "fix-2: \nÇerez, Demlik çay, Nargile, Tulumba tatlı",
+      price: 850 },
+      { name: "fix-3: \nBüskivi, Demlik çay, Nargile, Halka tatlısı",
+      price: 670 }
+
     ],
+
+    "tatlilar": [
+      { name: "Kaşık Tatlısı", price: 175 },
+      { name: "Tulumba Tatlısı", price: 120 },
+      { name: "Halka Tatlısı(Fıstıklı)", price: 50 },
+      { name: "Sade", price: 35 },
+      
+    ],
+
     "yemekler": [
       { name: "Tavuk Pilav", price: 150 },
       { name: "Tavuk Dürüm", price: 130 },
@@ -168,6 +186,14 @@
       { name: "Gözleme", price: 180},
       { name: "Patates", price: 80},
       { name: "Tost", price: 130}
+      ],
+
+    "bisküvi": [
+      { name: "Biskrem", price: 50},
+      { name: "Eti Cin", price: 50},
+      { name: "Eti Burçak", price: 50},
+      { name: "Popkekler", price: 45},
+      { name: "Canpare", price: 50}
       ]
   };
 
