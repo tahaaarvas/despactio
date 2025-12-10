@@ -4,95 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Despacito Coffe</title>
+
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #000000;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header button {
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 18px;
-      cursor: pointer;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-      font-weight: 600;
-    }
-    header button:hover, header button.active {
-      background-color: #444444;
-    }
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 15px;
-    }
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 25px;
-    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#121212; color:#eee; margin:0; }
+    header { background:#000; padding:15px 20px; display:flex; justify-content:center; gap:20px; position:sticky; top:0; z-index:10; }
+    header button { background:0; border:0; color:#fff; font-size:18px; cursor:pointer; padding:10px 18px; border-radius:8px; transition:.3s; }
+    header button:hover, header button.active { background:#444; }
+    main { max-width:900px; margin:30px auto; padding:0 15px; }
+    .product-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:25px; }
+
     .product-card {
-      color: #fff;
-      background: #1e1e1e;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.8);
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
+      background:#1e1e1e; border-radius:12px; overflow:hidden; text-align:center;
+      box-shadow:0 6px 15px rgba(0,0,0,.8); transition:.2s; cursor:pointer;
     }
-    .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    .product-card:hover { transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,0,0,.5); }
+
+    /* IMG YERİ — <img> DEĞİL ARTIK background-image ile */
+    .product-img {
+      width:100%; height:200px; background:#222;
+      background-size:contain; background-repeat:no-repeat; background-position:center;
+      border-radius:12px 12px 0 0;
     }
-    .product-image {
-      width: 100%;
-      height: 200px;
-      object-fit: contain;
-      object-position: center;
-      background: #f0f0f0;
-      padding: 0;
-      border-radius: 12px 12px 0 0;
-      display: block;
-    }
-    .product-info {
-      padding: 15px 10px 20px;
-    }
-    .product-name {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-    .product-price {
-      font-size: 16px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    @media (max-width: 600px) {
-      .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      }
-      header {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-    }
+
+    .product-info { padding:12px; }
+    .product-name { font-weight:700; font-size:17px; margin-bottom:5px; }
+    .product-price { font-size:16px; font-weight:600; }
+
+    @media(max-width:600px){ header{flex-wrap:wrap;} .product-list{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));} }
   </style>
 </head>
 <body>
@@ -101,137 +39,88 @@
   <button class="tab-button active" data-category="soğuk-icecek">Soğuk İçecek</button>
   <button class="tab-button" data-category="sicak-icecek">Sıcak İçecek</button>
   <button class="tab-button" data-category="nargile">Nargile</button>
-  <button class="tab-button" data-category="fix_menu">Fix Menu </button>
-   <button class="tab-button" data-category="tatlilar">Tatlılar </button>
+  <button class="tab-button" data-category="fix_menu">Fix Menü</button>
+  <button class="tab-button" data-category="tatlilar">Tatlılar</button>
   <button class="tab-button" data-category="yemekler">Yemekler</button>
   <button class="tab-button" data-category="cerezler">Aparatlar</button>
   <button class="tab-button" data-category="bisküvi">Bisküvi</button>
 </header>
 
-<main>
-  <div id="product-container" class="product-list"></div>
-</main>
+<main><div id="product-container" class="product-list"></div></main>
 
 <script>
   const menu = {
     "soğuk-icecek": [
-      { name: "Enerji İçeceği", price: 100 },
-      { name: "Limonata", price: 80 },
-      { name: "Çamlıca Gazoz", price: 60 },
-      { name: "Furitti Gazoz", price: 80 },
-      { name: "Mantana", price: 80 },
-      { name: "Armutlu Gazoz", price: 80 },
-      { name: "Cappy Çeşitleri", price: 90 },
-      { name: "Coca Cola", price: 90 },
-      { name: "Soda Çesitleri", price: 60 },
-      { name: "Fanta", price: 90 },
-      { name: "Fuse Tea", price: 90 },
-      { name: "Su", price: 15 },
-      { name: "Soğuk Kahve", price: 120 }
-      
+      { name:"Enerji İçeceği", price:100, img:"Soğuk İçecek Resimleri/enerji_icecegi.jpg" },
+      { name:"Limonata", price:80, img:"Soğuk İçecek Resimleri/limonata.jpg" },
+      { name:"Çamlıca Gazoz", price:60, img: "Soğuk İçecek Resimleri/camlica_gazoz.jpg" },
+      { name:"Furitti Gazoz", price:80, img: "Soğuk İçecek Resimleri/frutti_gazoz.jpg" },
+      { name:"Maltana", price:80, img: "Soğuk İçecek Resimleri/maltana_gazoz.jpg" },
+      { name:"Armutlu Gazoz", price:80, img: "Soğuk İçecek Resimleri/armutlu_gazoz.webp" },
+      { name:"Cappy Çeşitleri", price:90, img: "Soğuk İçecek Resimleri/cappy.webp" },
+      { name:"Coca Cola", price:90, img: "Soğuk İçecek Resimleri/coca_cola.webp" },
+      { name:"Soda Çesitleri", price:60, img: "Soğuk İçecek Resimleri/soda_cesitleri.png"},
+      { name:"Fanta", price:90, img: "Soğuk İçecek Resimleri/fanta.webp"},
+      { name:"Fuse Tea", price:90, img: "Soğuk İçecek Resimleri/fuse_tea.jpg"},
+      { name:"Su", price:15, img: "Soğuk İçecek Resimleri/su.jpg"},
+      { name:"Soğuk Kahve", price:120, img: "Soğuk İçecek Resimleri/soguk_kahve.jpg"}
     ],
     "sicak-icecek": [
-      { name: "Küçük Çay", price: 20 },
-      { name: "Büyük Çay", price: 30 },
-      { name: "Duble Çay", price: 35 },
-      { name: "Nane Limon", price: 50 },
-      { name: "Bitki Çayı", price: 120 },
-      { name: "Türk Kahvesi", price: 120 },
-      { name: "Dibek", price: 100 },
-      { name: "Menengiç", price: 100 },
-      { name: "Americano", price: 90 },
-      { name: "Latte", price: 100 },
-      { name: "Espresso", price: 70 },
-      { name: "Cappuccino", price: 100 },
-      { name: "Salep", price: 90 },
-      { name: "Sıcak Çikolata", price: 100 },
-      { name: "Nescafe", price: 60 },
-      { name: "Mocha", price: 120 }
+      { name:"Küçük Çay", price:20 },
+      { name:"Büyük Çay", price:30 },
+      { name:"Duble Çay", price:35 },
+      { name:"Nane Limon", price:50 },
+      { name:"Bitki Çayı", price:120 },
+      { name:"Türk Kahvesi", price:120 },
+      { name:"Dibek", price:100 },
+      { name:"Menengiç", price:100 },
+      { name:"Americano", price:90 },
+      { name:"Latte", price:100 },
+      { name:"Espresso", price:70 },
+      { name:"Cappuccino", price:100 },
+      { name:"Salep", price:90 },
+      { name:"Sıcak Çikolata", price:100 },
+      { name:"Nescafe", price:60 },
+      { name:"Mocha", price:120 }
     ],
-    "nargile": [
-      { name: "Nargile", price: 250 },
-      { name: "Lüle", price: 150 }
+    "nargile":[{name:"Nargile",price:250},{name:"Lüle",price:150}],
+    "fix_menu":[
+      {name:"fix-1: Çerez, Çay, Nargile, 2 Magnolya, Meyve",price:1200},
+      {name:"fix-2: Çerez, Demlik Çay, Nargile, Tulumba",price:850},
+      {name:"fix-3: Bisküvi, Demlik Çay, Nargile, Halka Tatlı",price:670}
     ],
-    "fix_menu": [
-      { name: "fix-1: \nÇerez lüx, 4 Bardak çay, Nargile, 2 Tane magnolya, 1 Meyve tabağı", 
-      price: 1200 },
-      { name: "fix-2: \nÇerez, Demlik çay, Nargile, Tulumba tatlı",
-      price: 850 },
-      { name: "fix-3: \nBüskivi, Demlik çay, Nargile, Halka tatlısı",
-      price: 670 }
-
-    ],
-
-    "tatlilar": [
-      { name: "Kaşık Tatlısı", price: 175 },
-      { name: "Tulumba Tatlısı", price: 120 },
-      { name: "Halka Tatlısı(Fıstıklı)", price: 50 },
-      { name: "Sade", price: 35 },
-      
-    ],
-
-    "yemekler": [
-      { name: "Tavuk Pilav", price: 150 },
-      { name: "Tavuk Dürüm", price: 130 },
-      { name: "Tavuk Şiş", price: 150 },
-      { name: "Kebap Dürüm", price: 200 },
-      { name: "Kebap Porsyon", price: 350 },
-      { name: "Et Döner", price: 200 },
-      { name: "Kuşbaşı", price: 220 },
-      { name: "Hatay Dürüm", price: 150 },
-      { name: "Zurna Dürüm", price: 170 }
-    ],
-    "cerezler": [
-      { name: "Karışık Çerez", price: 130},
-      { name: "Gözleme", price: 180},
-      { name: "Patates", price: 80},
-      { name: "Tost", price: 130}
-      ],
-
-    "bisküvi": [
-      { name: "Biskrem", price: 50},
-      { name: "Eti Cin", price: 50},
-      { name: "Eti Burçak", price: 50},
-      { name: "Popkekler", price: 45},
-      { name: "Canpare", price: 50}
-      ]
+    "tatlilar":[{name:"Kaşık Tatlısı",price:175},{name:"Tulumba",price:120},{name:"Halka (Fıstıklı)",price:50},{name:"Sade",price:35}],
+    "yemekler":[{name:"Tavuk Pilav",price:150},{name:"Tavuk Dürüm",price:130},{name:"Tavuk Şiş",price:150},{name:"Kebap Dürüm",price:200}],
+    "cerezler":[{name:"Karışık Çerez",price:130},{name:"Gözleme",price:180},{name:"Patates",price:80},{name:"Tost",price:130}],
+    "bisküvi":[{name:"Biskrem",price:50},{name:"Eti Cin",price:50},{name:"Burçak",price:50}]
   };
 
-  const container = document.getElementById('product-container');
-  const buttons = document.querySelectorAll('.tab-button');
-  const sharedImage = "despacito.png";
-
-  function renderCategory(category) {
-    container.innerHTML = '';
-    const products = menu[category];
-    products.forEach(item => {
-      const priceText = item.price ? item.price + " TL" : "Fiyat için lütfen sorun";
-      const div = document.createElement('div');
-      div.classList.add('product-card');
-      div.innerHTML = `
-        <img class="product-image" src="${sharedImage}" alt="${item.name}" />
-        <div class="product-info">
-          <div class="product-name">${item.name}</div>
-          <div class="product-price">${priceText}</div>
-        </div>
-      `;
-      container.appendChild(div);
-    });
+  function renderCategory(category){
+    const area = document.getElementById("product-container");
+    area.innerHTML="";
+    menu[category].forEach(item=>{
+      const img = item.img ? `background-image:url('${item.img}')` : "background:#2a2a2a";
+      area.innerHTML+=`
+        <div class="product-card">
+          <div class="product-img" style="${img}"></div>
+          <div class="product-info">
+            <div class="product-name">${item.name}</div>
+            <div class="product-price">${item.price} TL</div>
+          </div>
+        </div>`;
+    })
   }
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  document.querySelectorAll(".tab-button").forEach(btn=>{
+    btn.onclick=()=>{
+      document.querySelectorAll(".tab-button").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
       renderCategory(btn.dataset.category);
-    });
+    }
   });
 
-  renderCategory('soğuk-icecek');
-  //ig:tahaaarvas_
-  //+905417628655
+  renderCategory("soğuk-icecek");
 </script>
-  
+
 </body>
 </html>
-
